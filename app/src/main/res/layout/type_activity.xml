@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:titleTextColor="#fff"
+        android:popupTheme="@style/AppTheme.PopupOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary" />
+
+        <ProgressBar
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar" />
+
+    <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/wrapper"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_name"
+                android:hint="请在此输入您的昵称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:text="提交"
+                android:textColor="#fff"
+                android:background="@color/colorPrimary"
+                android:id="@+id/btn_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

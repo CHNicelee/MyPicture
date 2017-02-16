@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="跳过数目："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:hint="默认为0"
+            android:inputType="number"
+            android:id="@+id/editText_np"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="子类别："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:hint="全部"
+            android:id="@+id/editText_childType"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="您可能想要查找以下类别:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:text="确认"
+        android:textColor="#fff"
+        android:background="@color/colorPrimary"
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--android:text="子类别举例：\n如果选的是明星，那么子类别可以填写明星的名字 \n如果选的是美女，可以填写素颜等等  \n但是有可能无法查找该类别"-->
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="子类别是在您所选的类别下面的更加细分的类别。有可能无法找到您的子类别，如果查找失败，建议多换换关键词"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

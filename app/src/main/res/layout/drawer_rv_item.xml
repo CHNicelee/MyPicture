@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="100dp"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textSize="@dimen/drawer_text_height"
+        android:gravity="center"
+        android:textColor="#000"
+        tool:text="美女"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:background="#300b0b0b"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"></View>
+
+</LinearLayout>

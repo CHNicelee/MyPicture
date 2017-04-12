@@ -13,11 +13,12 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:translationZ="10dp"
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/splash" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -32,10 +33,11 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="Android Studio"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
         <TextView
             android:onClick="toAboutUs"
-            android:text="软件很烂？"
-            android:textColor="@color/colorPrimary"
+            android:text="软件很烂？点此反馈  "
+            android:textColor="#fff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/aboutUs" />

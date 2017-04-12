@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ice.picture.bean.User;
 import com.ice.picture.util.Util;
@@ -21,6 +23,7 @@ import com.tencent.tauth.UiError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -43,6 +46,7 @@ public class LoginActivity extends BaseActivity {
     private Tencent mTencent;
     private UserInfo mUserInfo;
     private BaseUiListener mIUiListener;
+    RelativeLayout container;
 
 
     @Override
@@ -50,6 +54,13 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        container = f(R.id.container);
+        ImageView imageView = f(R.id.imageView);
+        try {
+            getBitmapForImgResourse(this,R.drawable.bg,imageView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //传入参数APPID和全局Context上下文
         mTencent = Tencent.createInstance(APP_ID,this.getApplicationContext());
         Util.connect(this);
@@ -138,9 +149,10 @@ public class LoginActivity extends BaseActivity {
     }
     //注册
     public void register(View view){
+
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
-        finish();
+//        finish();
     }
     /**
      * 在调用Login的Activity或者Fragment中重写onActivityResult方法

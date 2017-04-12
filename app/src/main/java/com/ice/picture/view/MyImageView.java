@@ -256,7 +256,7 @@ public class MyImageView extends ImageView implements GestureDetector.OnGestureL
         MotionEvent obtain = MotionEvent.obtain(event);
         obtain.setLocation(event.getRawX(),event.getRawY());
 
-        return gestureDetector.onTouchEvent(obtain);
+        return gestureDetector.onTouchEvent(event);
     }
 /*
 * 确认是单击事件时回调

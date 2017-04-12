@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/ThemeSplash"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity"  android:theme="@style/AppTheme.NoActionBar"></activity>
-
+        <activity android:name=".LoginActivity"  android:theme="@style/AppTheme.LoginTheme"></activity>
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.LoginTheme"></activity>
         <activity android:name=".TypeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity android:name=".MainActivity"
 
             android:theme="@style/AppTheme.NoActionBar_White"></activity>

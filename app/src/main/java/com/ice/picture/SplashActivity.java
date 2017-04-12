@@ -7,6 +7,9 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -16,13 +19,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.ice.picture.bean.User;
 import com.ice.picture.bean.Version;
 import com.ice.picture.service.DownloadService;
 import com.ice.picture.util.Util;
 
+import java.io.IOException;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -51,6 +54,7 @@ public class SplashActivity extends BaseActivity {
 
         }
     };
+    private Intent downloadIntent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +63,12 @@ public class SplashActivity extends BaseActivity {
 
         Util.connect(this);
         imageView = f(R.id.imageView);
-        Intent downloadIntent = new Intent(SplashActivity.this,DownloadService.class);
+        try {
+            getBitmapForImgResourse(this,R.drawable.splash,imageView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        downloadIntent = new Intent(SplashActivity.this,DownloadService.class);
         startService(downloadIntent);//启动服务
         bindService(downloadIntent,connection,BIND_AUTO_CREATE);//绑定服务
 
@@ -161,6 +170,14 @@ public class SplashActivity extends BaseActivity {
                 }else {
                     Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
                     startActivity(intent);
+                    Drawable drawable = imageView.getDrawable();
+                    if (drawable != null && drawable instanceof BitmapDrawable) {
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                        Bitmap bitmap = bitmapDrawable.getBitmap();
+                        if (bitmap != null && !bitmap.isRecycled()) {
+                            bitmap.recycle();
+                        }
+                    }
                     finish();
                 }
             }
@@ -249,9 +266,13 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stopService(downloadIntent);
         unbindService(connection);
     }
+
+
 }

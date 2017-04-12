@@ -10,6 +10,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,7 +83,9 @@ public class TypeActivity extends BaseActivity {
 
             return;
         }
-        checkName();
+        //checkName();
+        init();
+        getDataFromServer();
     }
 
     private void checkName() {
@@ -155,7 +159,7 @@ public class TypeActivity extends BaseActivity {
     }
 
     private void init() {
-
+        progressBar = f(R.id.progressBar);
         if(TextUtils.isEmpty(Util.user.userId)){
             Util.userType = Util.NORMAL_USER;
         }else {
@@ -200,7 +204,6 @@ public class TypeActivity extends BaseActivity {
                 }else {
                     show("网络似乎有点问题...");
                     Log.e("ICE",e.getMessage());
-
                 }
             }
         });
@@ -248,6 +251,34 @@ public class TypeActivity extends BaseActivity {
         });
     }
     long lastClick = 0;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.others,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.close:
+                finish();
+                break;
+            case R.id.logout:
+                finish();
+                startActivity(new Intent(this,LoginActivity.class));
+                Util.user = new User();
+                Util.collectionList = new ArrayList<>();
+                putString("autoLogin","false");
+
+                break;
+            case R.id.aboutUs:
+                startActivity(new Intent(this,AboutActivity.class));
+                break;
+        }
+        return true;
+    }
+
 
     @Override
     public void onBackPressed() {

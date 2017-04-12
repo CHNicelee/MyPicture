@@ -7,10 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.ice.picture.bean.User;
 import com.ice.picture.util.Util;
 
+import java.io.IOException;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -31,7 +33,11 @@ public class RegisterActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
-
+        try {
+            getBitmapForImgResourse(this,R.drawable.bg, (ImageView) f(R.id.imageView));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = f(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +46,7 @@ public class RegisterActivity extends BaseActivity {
         et_name = f(R.id.input_name);
 
         Util.connect(this);
+
 
     }
 
@@ -101,11 +108,11 @@ public class RegisterActivity extends BaseActivity {
         });
 
     }
-
+/*
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
-    }
+    }*/
 }

@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -38,7 +39,7 @@ public class Util {
     public static List<Type> typeList = new ArrayList<>();//类型列表
     public static List<Item> itemList; //子类型列表
     public static List<UserCollection> collectionList = new ArrayList<>();//收藏列表
-    public static List<Activity> activityList = new ArrayList<>();
+    public static Stack<Activity> activityList = new Stack<>();
     public static void connect(Context context){
 //        Bmob.initialize(context,"7ef28ae1842fcf531149f17834d84646");
         BmobConfig config =new BmobConfig.Builder(context)
@@ -85,6 +86,10 @@ public class Util {
         }
         return images;
     }
+
+
+
+
 
     public static User user = new User();
 

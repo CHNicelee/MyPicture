@@ -13,5 +13,6 @@
     <dimen name="drawer_text_height">20sp</dimen>
     <dimen name="detail_image_btn_margin">20dp</dimen>
     <dimen name="detail_image_btn_width">45dp</dimen>
+    <dimen name="register_marginTop">10dp</dimen>
 
 </resources>

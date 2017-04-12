@@ -41,7 +41,8 @@ public class ToastCommon {
         TextView text = (TextView) layout.findViewById(R.id.textView);
         text.setText(tvString);
         text.setTextColor(Color.WHITE);
-        toast = new Toast(context);
+        if(toast==null)
+            toast = new Toast(context);
         toast.setGravity(Gravity.CENTER, 0, 600);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);

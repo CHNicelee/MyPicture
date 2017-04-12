@@ -97,15 +97,17 @@ public class MainActivity extends BaseActivity {
                         .setPositiveButton("退出", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                finish();
                                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                                 startActivity(intent);
                                 Util.user = new User();
                                 Util.collectionList = new ArrayList<UserCollection>();
                                 putString("autoLogin","false");
-                                finish();
 
                             }
-                        }).setNegativeButton("取消",null).show();
+                        })
+                        .setNegativeButton("取消",null)
+                        .show();
             }
         });
     }
@@ -113,7 +115,6 @@ public class MainActivity extends BaseActivity {
     private void initToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         drawerRv = f(R.id.drawer_recyclerView);
         drawer = f(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -227,8 +228,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
-    long lastClick = 0;
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

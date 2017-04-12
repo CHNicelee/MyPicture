@@ -1,7 +1,10 @@
 package com.ice.picture;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,11 +12,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.ice.picture.util.NetWorkUtil;
 import com.ice.picture.util.Util;
 import com.ice.picture.view.ToastCommon;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +40,15 @@ public class BaseActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         Util.activityList.remove(this);
+        if(btp !=null && !btp.isRecycled()) {
+            btp.recycle();
+            btp = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override
@@ -49,7 +64,7 @@ public class BaseActivity extends AppCompatActivity{
                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
            }
            else {
-               getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationBar));
+//               getWindow().setNavigationBarColor(getResources().getColor(R.color.navigationBar));
            }
         }
         netWorkUtil = new NetWorkUtil(this);
@@ -110,6 +125,21 @@ public class BaseActivity extends AppCompatActivity{
         return sharedPreferences.getString(key,"");
     }
 
+
+    public  Bitmap btp;
+    public  void getBitmapForImgResourse(Context mContext, int imgId, ImageView mImageView) throws IOException {
+        InputStream is = mContext.getResources().openRawResource(imgId);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = false;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inSampleSize = 1;
+        btp = BitmapFactory.decodeStream(is, null, options);
+        mImageView.setImageBitmap(btp);
+//    btp.recycle();
+        is.close();
+    }
 
 
 }
